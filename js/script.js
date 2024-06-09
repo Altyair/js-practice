@@ -1,4 +1,6 @@
 window.onload = () => {
+    const wrapper = document.querySelector("#wrapper");
+
     const ex1 = () => {
         const S = Math.sin, C = Math.cos;
         let w, h, canvas, ctx, t = 0;
@@ -12,8 +14,7 @@ window.onload = () => {
             canvas.style.border = "1px solid";
             canvas.style.backgroundColor = "black";
 
-            const body = document.getElementsByTagName("body")[0];
-            body.appendChild(canvas);
+            wrapper.appendChild(canvas);
             ctx = canvas.getContext("2d");
         }
 
@@ -63,6 +64,10 @@ window.onload = () => {
         if (event.target.tagName !== 'LI') return;
 
         const href = event.target.dataset.href;
+
+        if (['ex1', 'ex2'].includes(href)) {
+            wrapper.innerHTML = '';
+        }
 
         switch (href) {
             case 'ex1':
