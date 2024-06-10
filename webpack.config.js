@@ -1,12 +1,11 @@
-const { resolve} = require("path");
+const path = require('path');
 module.exports = {
     mode: 'development',
-    context: __dirname,
     devtool: "source-map",
     entry: "./js/script.js",
     output: {
-        path: resolve(__dirname, './dist/'),
-        filename: './dist/js/main.js',
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'dist/js/main.js',
     },
     module:{},
     devServer: {
@@ -14,8 +13,9 @@ module.exports = {
             directory: __dirname,
         },
         compress: true,
-        port: 9000,
-        hot: true,
+        port: 8000,
         liveReload: true,
+        host: "0.0.0.0",
+        allowedHosts: 'all',
     },
 }

@@ -48,7 +48,7 @@ window.onload = () => {
 
         function draw2() {
             clear();
-            console.log(777);
+            console.log(7777);
             // requestAnimationFrame(draw2);
         }
 
@@ -57,7 +57,7 @@ window.onload = () => {
     }
 
     const ex2 = () => {
-        console.log('ex2');
+        console.log('231231313');
     }
 
     document.querySelector('#menu').addEventListener('click', event => {
