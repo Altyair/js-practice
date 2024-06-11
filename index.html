@@ -10,14 +10,38 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined" rel="stylesheet">
   <script type="application/javascript" src="dist/js/main.js"></script>
+
+  <style>
+    #wrapper {
+      display: flex;
+      padding: 30px 0 0 0;
+    }
+    #content {
+      margin-left: 30px;
+    }
+    pre:not(.highlight), div.highlight, div:not(.highlight)>pre.highlight, li pre.highlight, blockquote pre.highlight {
+      background-color: black;
+      color: white;
+      /*font-size: 80%;*/
+      border-radius: 5px;
+      margin: 0;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      overflow-wrap: initial;
+      padding: 10px;
+    }
+  </style>
 </head>
   <body style="margin: 0; padding: 0">
-    <ul id="menu" style="display: inline-block">
-      <li data-href="ex1" style="cursor: pointer">Canvas</li>
-      <li data-href="ex2" style="cursor: pointer">Merge array of intervals</li>
-      <li data-href="ex3" style="cursor: pointer">Count of vowels in a line</li>
-      <li data-href="ex4" style="cursor: pointer">Calculate max area</li>
-    </ul>
-    <div id="wrapper"></div>
+    <div id="wrapper">
+      <ul id="menu" style="display: inline-block">
+        <li data-href="ex1" style="cursor: pointer">Canvas</li>
+        <li data-href="ex2" style="cursor: pointer">Merge array of intervals</li>
+        <li data-href="ex3" style="cursor: pointer">Count of vowels in a line</li>
+        <li data-href="ex4" style="cursor: pointer">Calculate max area</li>
+        <li data-href="ex5" style="cursor: pointer">Binary search in a sorted shifted array</li>
+      </ul>
+      <div id="content"></div>
+    </div>
   </body>
 </html>

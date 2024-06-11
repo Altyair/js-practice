@@ -1,9 +1,105 @@
+let content;
+
+// ---------------------------------- palindrome number
+const ex6 = (arr, el) => {
+    const input1 = 121;
+    const input2 = -121;
+    const input3 = 10;
+
+    const isPalindromeNumber = (x) => {
+        if (x < 0) return false;
+        if (x % 10 === 0) return false;
+        if (x < 10) return true;
+
+
+    }
+
+    console.log(isPalindromeNumber(input1));
+    console.log(isPalindromeNumber(input2));
+    console.log(isPalindromeNumber(input3));
+}
+
+// ---------------------------------- binary search in a sorted shifted array
+const ex5 = (arr, el) => {
+    let input1 = [4,5,6,7,8,1,2,3];
+
+    const binarySearch = (arr, el) => {
+        let left = 0;
+        let right = arr.length - 1;
+
+        while (left <= right) {
+            const mid = Math.floor((left + right) / 2);
+
+            if (arr[mid] === el) {
+                return mid;
+            }
+            if (arr[left] <= arr[mid]) {
+                if (arr[left] <= el && el <= arr[mid]) {
+                    right = mid -1;
+                } else {
+                    left = mid + 1;
+                }
+            } else {
+                if (arr[mid] <= el && el <= arr[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+    console.log(binarySearch(input1, 2));
+
+    const codeBlock = document.createElement('div');
+    codeBlock.className = "highlight";
+    codeBlock.innerHTML = `
+        <pre class="highlight plaintext">
+            <code>
+let input1 = [4,5,6,7,8,1,2,3];
+
+const binarySearch = (arr, el) => {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+
+        if (arr[mid] === el) {
+            return mid;
+        }
+        if (arr[left] <= arr[mid]) {
+            if (arr[left] <= el && el <= arr[mid]) {
+                right = mid -1;
+            } else {
+                left = mid + 1;
+            }
+        } else {
+            if (arr[mid] <= el && el <= arr[right]) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+    }
+    return -1;
+}
+
+// find index for 2
+console.log(binarySearch(input1, 2));   // 6
+            </code>
+        </pre>
+    `;
+    content.appendChild(codeBlock);
+}
+
 // ---------------------------------- calculate max area
 const ex4 = () => {
     let input1 = [1,8,6,2,5,4,3,8,7];    // 49
     let input2 = [1,1];                  // 1
     let input3 = [4,3,2,1,4];            // 16
     let input4 = [1,2,1];                // 2
+    let input5 = [0,0,0,500];            // 0
 
     const maxArea = (height) => {
         let maxArea = 0;
@@ -28,6 +124,7 @@ const ex4 = () => {
     console.log(maxArea(input2));
     console.log(maxArea(input3));
     console.log(maxArea(input4));
+    console.log(maxArea(input5));
 }
 
 // ---------------------------------- count of vowels in a line
@@ -103,7 +200,7 @@ const ex1 = () => {
         canvas.style.border = "1px solid";
         canvas.style.backgroundColor = "black";
 
-        wrapper.appendChild(canvas);
+        content.appendChild(canvas);
         ctx = canvas.getContext("2d");
     }
 
@@ -146,16 +243,13 @@ const ex1 = () => {
 }
 
 window.onload = () => {
-    const wrapper = document.querySelector("#wrapper");
-
+    content = document.querySelector("#content");
     document.querySelector('#menu').addEventListener('click', event => {
         if (event.target.tagName !== 'LI') return;
 
         const href = event.target.dataset.href;
 
-        if (['ex1', 'ex2'].includes(href)) {
-            wrapper.innerHTML = '';
-        }
+        content.innerHTML = '';
 
         switch (href) {
             case 'ex1':
@@ -166,6 +260,12 @@ window.onload = () => {
                 break;
             case 'ex3':
                 ex3();
+                break;
+            case 'ex4':
+                ex4();
+                break;
+            case 'ex5':
+                ex5();
                 break;
         }
     });
