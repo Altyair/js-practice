@@ -9,18 +9,25 @@ const loadModule = (name) => {
         });
 }
 
+const selectMenuElement = (hash) => {
+    const element = document.querySelector(`[data-hash="${hash}"]`);
+    element.style.fontWeight = 'bold';
+}
+
 window.onload = () => {
-    if (window.location.hash) {
-        console.log(window.location);
-        loadModule(window.location.hash.replace(/#/, ''));
+    const hash = window.location.hash.replace(/#/, '');
+    if (hash) {
+        loadModule(hash);
+        selectMenuElement(hash);
     }
 
     const content = document.querySelector("#content");
     document.querySelector('#menu').addEventListener('click', event => {
         if (event.target.tagName !== 'LI') return;
-        const name = event.target.dataset.hash;
+        const hash = event.target.dataset.hash;
         content.innerHTML = '';
 
-        loadModule(name);
+        loadModule(hash);
+        selectMenuElement(hash);
     });
 }
