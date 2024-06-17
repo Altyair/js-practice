@@ -2,7 +2,7 @@
 <html lang="en" translate="no" style="overflow:hidden; margin: 0; padding: 0">
 <head>
   <meta charset="utf-8" content="notranslate">
-  <title>Game</title>
+  <title>JS practice</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -12,6 +12,7 @@
   <script type="application/javascript" src="dist/js/main.js"></script>
 
   <style>
+    body { margin: 0; padding: 0 }
     #wrapper {
       display: flex;
       padding: 30px 0 0 0;
@@ -28,18 +29,22 @@
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       overflow-wrap: initial;
-      padding: 10px;
+      padding: 10px 50px 10px 10px;
     }
+    #menu { display: inline-block; }
+    #menu li { cursor: pointer; }
   </style>
 </head>
-  <body style="margin: 0; padding: 0">
+  <body>
     <div id="wrapper">
-      <ul id="menu" style="display: inline-block">
-        <li data-href="ex1" style="cursor: pointer">Canvas</li>
-        <li data-href="ex2" style="cursor: pointer">Merge array of intervals</li>
-        <li data-href="ex3" style="cursor: pointer">Count of vowels in a line</li>
-        <li data-href="ex4" style="cursor: pointer">Calculate max area</li>
-        <li data-href="ex5" style="cursor: pointer">Binary search in a sorted shifted array</li>
+      <ul id="menu">
+        <li data-hash="ex1">Canvas</li>
+        <li data-hash="ex2">Merge array of intervals</li>
+        <li data-hash="ex3">Count of vowels in a line</li>
+        <li data-hash="ex4">Calculate max area</li>
+        <li data-hash="ex5">Binary search in a sorted shifted array</li>
+        <li data-hash="ex6">Palindrome of number</li>
+        <li data-hash="ex7">Remove duplicates in array of number</li>
       </ul>
       <div id="content"></div>
     </div>
