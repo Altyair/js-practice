@@ -1,5 +1,5 @@
 export const createBlockForCode = (code) => {
-    const content = document.querySelector("#content");
+    const content = document.getElementsByClassName("content")[0];
     const codeBlock = document.createElement('div');
     codeBlock.className = "highlight";
     codeBlock.innerHTML = `

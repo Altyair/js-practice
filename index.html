@@ -13,11 +13,11 @@
 
   <style>
     body { margin: 0; padding: 0 }
-    #wrapper {
+    .wrapper {
       display: flex;
       padding: 30px 0 0 0;
     }
-    #content {
+    .content {
       margin-left: 30px;
     }
     pre:not(.highlight), div.highlight, div:not(.highlight)>pre.highlight, li pre.highlight, blockquote pre.highlight {
@@ -31,13 +31,13 @@
       overflow-wrap: initial;
       padding: 10px 50px 10px 10px;
     }
-    #menu { display: inline-block; }
-    #menu li { cursor: pointer; }
+    .menu { display: inline-block; }
+    .menu li { cursor: pointer; }
   </style>
 </head>
   <body>
-    <div id="wrapper">
-      <ul id="menu">
+    <div class="wrapper">
+      <ul class="menu">
         <li data-hash="ex1">Canvas</li>
         <li data-hash="ex2">Merge array of intervals</li>
         <li data-hash="ex3">Count of vowels in a line</li>
@@ -46,8 +46,9 @@
         <li data-hash="ex6">Palindrome of number</li>
         <li data-hash="ex7">Remove duplicates in array of number</li>
         <li data-hash="ex8">Сheck the validity of the brackets</li>
+        <li data-hash="ex9">Brick wall</li>
       </ul>
-      <div id="content"></div>
+      <div class="content"></div>
     </div>
   </body>
 </html>

@@ -21,8 +21,8 @@ window.onload = () => {
         selectMenuElement(hash);
     }
 
-    const content = document.querySelector("#content");
-    document.querySelector('#menu').addEventListener('click', event => {
+    const content = document.getElementsByClassName("content")[0];
+    document.getElementsByClassName('menu')[0].addEventListener('click', event => {
         if (event.target.tagName !== 'LI') return;
         const hash = event.target.dataset.hash;
         content.innerHTML = '';

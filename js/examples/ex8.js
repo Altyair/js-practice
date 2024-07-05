@@ -1,6 +1,6 @@
 import { createBlockForCode } from '../helper'
 
-// ---------------------------------- check the validity of the brackets ------------------------
+// ---------------------------------- check the validity of the brackets O(n) ------------------------
 export const main = () => {
     const s1 = '()';
     const s2 = '()[]{}';
