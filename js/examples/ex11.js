@@ -137,7 +137,7 @@ export const main = () => {
 
     console.log('sorting by choice', sortingByChoice([5,2,9,1,5,6]));
 
-    //--------------------------------- Check the validity of the brackets ---------------
+    //--------------------------------- check the validity of the brackets ---------------
     const checkValidityBrackets = (brackets) => {
         const bracketsMap = { ')': '(', '}': '{', ']': '[' };
         const isClosed = (bracket) => [')','}',']'].indexOf(bracket) !== -1;
@@ -161,4 +161,18 @@ export const main = () => {
     console.log('сheck the validity of the brackets', checkValidityBrackets('({})'));   // true
     console.log('сheck the validity of the brackets', checkValidityBrackets('({[})'));  // false
     console.log('сheck the validity of the brackets', checkValidityBrackets('({}'));    // false
+
+    //--------------------------------- max area ---------------
+    const calcMaxArea = (arr) => {
+        let l = 0, r = arr.length - 1;
+        let max = 0;
+        while (l < r) {
+            const area = Math.min(arr[l], arr[r]) * (r - l);
+            max = Math.max(max, area);
+            (arr[l] < arr[r]) ? l++ : r--;
+        }
+        return max;
+    }
+
+    console.log('max area', calcMaxArea([1,8,6,2,5,4,3,8,7]));      // 49
 }
