@@ -139,6 +139,26 @@ export const main = () => {
 
     //--------------------------------- Check the validity of the brackets ---------------
     const checkValidityBrackets = (brackets) => {
-
+        const bracketsMap = { ')': '(', '}': '{', ']': '[' };
+        const isClosed = (bracket) => [')','}',']'].indexOf(bracket) !== -1;
+        const bracketsArr = brackets.split('');
+        for (let i = 0; i < bracketsArr.length; i++) {
+            if (isClosed(bracketsArr[i])) {
+                if (bracketsMap[bracketsArr[i]] === bracketsArr[i - 1]) {
+                    bracketsArr.splice(i, 1);
+                    bracketsArr.splice(i - 1, 1);
+                    i-=2;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return bracketsArr.length <= 0;
     };
+
+    console.log('сheck the validity of the brackets', checkValidityBrackets(')'));      // false
+    console.log('сheck the validity of the brackets', checkValidityBrackets('()'));     // true
+    console.log('сheck the validity of the brackets', checkValidityBrackets('({})'));   // true
+    console.log('сheck the validity of the brackets', checkValidityBrackets('({[})'));  // false
+    console.log('сheck the validity of the brackets', checkValidityBrackets('({}'));    // false
 }
