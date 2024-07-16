@@ -51,8 +51,9 @@ export const setupCanvas = (parent) => {
     window.onresize = resize;
 
     const { w, h } = resize(canvas);
+    const { left, top } = canvas.getBoundingClientRect();
 
-    return Object.assign({ w, h }, { canvas, context });
+    return Object.assign({ left, top }, { w, h }, { canvas, context });
 }
 
 export const drawCanvas = (params, drawCallback) => {

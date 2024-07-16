@@ -2,15 +2,25 @@ import { createBlockForCode, setupCanvas, drawCanvas, getRandomNumber } from '..
 
 // ---------------------------------- canvasL gravity balls -------------
 export const main = () => {
-    const { w, h, canvas, context } = setupCanvas(document.getElementsByClassName('content')[0]);
-    const startCoords = { x: 334, y: 30 }; // TODO вычислять динамически
-    const mouse = { x: w / 2 , y: h / 2, down: false };
+    const {
+        left,
+        top,
+        w,
+        h,
+        canvas,
+        context
+    } = setupCanvas(document.getElementsByClassName('content')[0]);
+
+    const calcMousePosition = (x, y) => {
+        return { x: x - left, y: y - top }
+    }
+    const mouse = Object.assign(calcMousePosition(w / 2, h / 2), { down: false } );
     const dots = [];
 
     // particle
     class Dot {
         constructor(r) {
-            this.pos = { x: mouse.x - startCoords.x, y: mouse.y - startCoords.y };
+            this.pos = { x: mouse.x, y: mouse.y };
             this.vel = { x: 0, y: 0 };
             this.rad = r || getRandomNumber(1, 10);
             this.mass = this.rad * 0.002;
@@ -18,8 +28,8 @@ export const main = () => {
         }
 
         draw(x, y) {
-            this.pos.x = x - startCoords.x || this.pos.x + this.vel.x;
-            this.pos.y = y - startCoords.y || this.pos.y + this.vel.y;
+            this.pos.x = x || this.pos.x + this.vel.x;
+            this.pos.y = y || this.pos.y + this.vel.y;
             context.fillStyle = context.strokeStyle = this.color;
             context.beginPath();
             context.arc(this.pos.x, this.pos.y, this.rad, 0, 2*Math.PI);
@@ -27,11 +37,9 @@ export const main = () => {
             context.fill();
         }
     }
-    dots.push(new Dot(35));
+    dots.push(new Dot(15));
 
-    canvas.addEventListener('mousemove', event => {
-        [mouse.x, mouse.y] = [event.clientX, event.clientY];
-    });
+    canvas.addEventListener('mousemove', event => [mouse.x, mouse.y] = [event.clientX - left, event.clientY - top] );
     canvas.addEventListener('mousedown', event => mouse.down = !mouse.down );
     canvas.addEventListener('mouseup', event => mouse.down = !mouse.down );
 
@@ -47,20 +55,20 @@ export const main = () => {
 
                 let force = (dist - 100) / dist * b.mass;
                 if (j === 0) {
-                    force = dist < 60 ? (dist - 60) * b.mass : b.mass;
+                    force = dist < 40 ? (dist - 40) * b.mass : b.mass;
                 }
                 acc.x += delta.x * force;
                 acc.y += delta.y * force;
             }
 
-            dots[i].vel.x = dots[i].vel.x * 0.65 + acc.x * dots[i].mass;
-            dots[i].vel.y = dots[i].vel.y * 0.65 + acc.y * dots[i].mass;
+            dots[i].vel.x = dots[i].vel.x * 0.95 + acc.x * dots[i].mass;
+            dots[i].vel.y = dots[i].vel.y * 0.95 + acc.y * dots[i].mass;
         }
-        dots.map(e => e === dots[0] ? e.draw(mouse.x, mouse.y) : e.draw());
+        dots.map(e => e === dots[0] ? e.draw(mouse.x, mouse.y): e.draw());
     }
 
     drawCanvas({w, h, context}, () => {
-        if (mouse.down && dots.length < 50000000) {
+        if (mouse.down && dots.length < 2) {
             dots.push(new Dot());
         }
         updateDots();
