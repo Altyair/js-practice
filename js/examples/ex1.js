@@ -14,7 +14,7 @@ export const main = () => {
     const calcMousePosition = (x, y) => {
         return { x: x - left, y: y - top }
     }
-    const mouse = Object.assign(calcMousePosition(w / 2, h / 2), { down: false } );
+    const mouse = Object.assign(calcMousePosition(w / 2 + left, h / 2 + top), { down: false } );
     const dots = [];
 
     // particle
@@ -43,6 +43,7 @@ export const main = () => {
     canvas.addEventListener('mousedown', event => mouse.down = !mouse.down );
     canvas.addEventListener('mouseup', event => mouse.down = !mouse.down );
 
+    // core
     const updateDots = () => {
         for (let i = 1; i < dots.length; i++) {
             const acc = { x: 0, y: 0 };
@@ -64,7 +65,7 @@ export const main = () => {
             dots[i].vel.x = dots[i].vel.x * 0.95 + acc.x * dots[i].mass;
             dots[i].vel.y = dots[i].vel.y * 0.95 + acc.y * dots[i].mass;
         }
-        dots.map(e => e === dots[0] ? e.draw(mouse.x, mouse.y): e.draw());
+        dots.map(e => e === dots[0] && mouse.down ? e.draw(mouse.x, mouse.y): e.draw());
     }
 
     drawCanvas({w, h, context}, () => {
