@@ -175,4 +175,25 @@ export const main = () => {
     }
 
     console.log('max area', calcMaxArea([1,8,6,2,5,4,3,8,7]));      // 49
+
+    //--------------------------------- bricks ---------------
+    const wall = [[1,2,2,1], [3,1,2], [1,3,2], [2,4], [3,1,2], [1,3,1,1]];
+    const leastBricks = (wall) => {
+        const map = {};
+        let max = 0;
+
+        for (let i = 0; i < wall.length; i++) {
+            let sum = 0;
+
+            for (let j = 0; j < wall[i].length - 1; j++) {
+                sum += wall[i][j];
+                map.hasOwnProperty(sum) ? map[sum] += 1 : map[sum] = 1;
+                max = Math.max(max, map[sum]);
+            }
+
+        }
+        console.log(map, max);
+        return wall.length - max;
+    }
+    console.log(leastBricks(wall));
 }

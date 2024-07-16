@@ -21,6 +21,7 @@ export const getRandomNumber = (min, max) => {
     return Math.random() * (max - min) + min
 }
 
+// canvas
 const createCanvas = (parent) => {
     const canvas = document.createElement('canvas');
 
