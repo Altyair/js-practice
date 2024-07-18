@@ -8,8 +8,6 @@ export const main = () => {
 
         while(l < r) {
             const mid = Math.floor((r - l) / 2) + l;
-            console.log(mid);
-
             if (arr[mid] === k) {
                 return mid;
             }

@@ -29,7 +29,7 @@ export const binarySearch = (arr, el) => {
 
 // ---------------------------------- binary search in a sorted shifted array
 export const main = (arr, el) => {
-    let input1 = [4,5,6,7,8,1,2,3];
+    let input1 = [4,7,1,2,3,5];
 
     console.log(binarySearch(input1, 2));
 
@@ -65,7 +65,5 @@ export const main = (arr, el) => {
         
         // find index for 2
         console.log(binarySearch(input1, 2));   // 6
-            </code>
-        </pre>
     `);
 }
