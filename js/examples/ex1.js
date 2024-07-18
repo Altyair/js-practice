@@ -68,6 +68,7 @@ export const main = () => {
         dots.map(e => e === dots[0] && mouse.down ? e.draw(mouse.x, mouse.y): e.draw());
     }
 
+    //
     drawCanvas({w, h, context}, () => {
         if (mouse.down && dots.length < 2) {
             dots.push(new Dot());
