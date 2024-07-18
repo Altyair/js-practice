@@ -56,7 +56,7 @@ export const main = () => {
 
                 let force = (dist - 150) / dist * b.mass;
                 if (j === 0) {
-                    force = dist < 80 ? (dist - 80) * b.mass : b.mass;
+                    force = dist <= 80 ? (dist - 80) / dist * b.mass : b.mass;
                 }
                 acc.x += delta.x * force;
                 acc.y += delta.y * force;
