@@ -1,6 +1,6 @@
 import { createBlockForCode, setupCanvas, drawCanvas, getRandomNumber } from '../helper';
 
-// ---------------------------------- canvasL gravity balls -------------
+// ---------------------------------- canvas: gravity of balls -------------
 export const main = () => {
     const {
         left,
@@ -54,9 +54,9 @@ export const main = () => {
                 const delta= { x: b.pos.x - a.pos.x, y: b.pos.y - a.pos.y };
                 const dist= Math.sqrt(delta.x * delta.x + delta.y * delta.y) || 1;
 
-                let force = (dist - 100) / dist * b.mass;
+                let force = (dist - 150) / dist * b.mass;
                 if (j === 0) {
-                    force = dist < 40 ? (dist - 40) * b.mass : b.mass;
+                    force = dist < 80 ? (dist - 80) * b.mass : b.mass;
                 }
                 acc.x += delta.x * force;
                 acc.y += delta.y * force;

@@ -20,7 +20,7 @@
     .content {
       margin-left: 30px;
     }
-    .menu { display: inline-block; }
+    .menu { max-height: 200px; overflow-y: scroll; display: inline-block; padding-right: 30px; }
     .menu__item { cursor: pointer; }
     pre:not(.highlight), div.highlight, div:not(.highlight)>pre.highlight, li pre.highlight, blockquote pre.highlight {
       background-color: black;
@@ -39,7 +39,7 @@
   <body>
     <div class="wrapper">
       <ul class="menu">
-        <li class="menu__item" data-hash="ex1">Canvas</li>
+        <li class="menu__item" data-hash="ex1">Canvas: the gravity of two balls</li>
         <li class="menu__item" data-hash="ex2">Merge array of intervals</li>
         <li class="menu__item" data-hash="ex3">Count of vowels in a line</li>
         <li class="menu__item" data-hash="ex4">Calculate max area</li>
@@ -50,6 +50,8 @@
         <li class="menu__item" data-hash="ex9">Brick wall</li>
         <li class="menu__item" data-hash="ex10">Find pairs of numbers whose sum is equal to k</li>
         <li class="menu__item" data-hash="ex12">Find the intersection of two arrays</li>
+        <li class="menu__item" data-hash="ex13">Bubble sort</li>
+        <li class="menu__item" data-hash="ex14">Sorting by choice</li>
         <li class="menu__item" data-hash="ex11">Test</li>
       </ul>
       <div class="content"></div>

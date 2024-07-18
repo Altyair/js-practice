@@ -72,7 +72,7 @@ export const main = () => {
                 if (numberToFind === arr[mid]) {
                     return [numberToFind, arr[i]];
                 }
-                (k < mid) ? r = mid: l = mid + 1;
+                (k < mid) ? r = mid - 1: l = mid + 1;
             }
         }
         return [];
@@ -125,7 +125,7 @@ export const main = () => {
     const sortingByChoice = (arr) => {
         for (let i = 0; i < arr.length; i++) {
             let min = i;
-            for (let j = i; j < arr.length; j++) {
+            for (let j = i + 1; j < arr.length; j++) {
                 if (arr[j] < arr[min]) {
                     min = j;
                 }
@@ -135,7 +135,7 @@ export const main = () => {
         return arr;
     }
 
-    console.log('sorting by choice', sortingByChoice([5,2,9,1,5,6]));
+    console.log('sorting by choice', sortingByChoice([0,5,2,9,1,5,6]));
 
     //--------------------------------- check the validity of the brackets ---------------
     const checkValidityBrackets = (brackets) => {

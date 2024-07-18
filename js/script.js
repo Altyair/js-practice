@@ -9,8 +9,13 @@ const loadModule = (name) => {
         });
 }
 
+let prevPage;
 const selectMenuElement = (hash) => {
+    if (prevPage) {
+        prevPage.style.fontWeight = 'normal';
+    }
     const element = document.querySelector(`[data-hash="${hash}"]`);
+    prevPage = element;
     element.style.fontWeight = 'bold';
 }
 
