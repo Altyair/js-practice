@@ -4,7 +4,7 @@ export const createAdaptive = () => {
     const menu = document.querySelector('.adaptive .menu');
     menu.style.display = 'none';
     const burgerMenuButton = document.createElement('a');
-    burgerMenuButton.innerHTML = '<img src="../accets/icons/burger-icon.png"  alt="menu"/>';
+    burgerMenuButton.innerHTML = '<img src="../assets/icons/burger-icon.png"  alt="menu"/>';
     burgerMenuButton.className = 'burger-menu-button';
     let toggleAdaptive = false;
     burgerMenuButton.addEventListener('click', () => {
