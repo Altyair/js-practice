@@ -1,3 +1,21 @@
+export const createAdaptive = () => {
+    const wrapper = document.querySelector('.wrapper');
+    wrapper.classList.add('adaptive');
+    const menu = document.querySelector('.adaptive .menu');
+    menu.style.display = 'none';
+    const burgerMenuButton = document.createElement('a');
+    burgerMenuButton.innerHTML = '<img src="../accets/icons/burger-icon.png"  alt="menu"/>';
+    burgerMenuButton.className = 'burger-menu-button';
+    let toggleAdaptive = false;
+    burgerMenuButton.addEventListener('click', () => {
+        toggleAdaptive = !toggleAdaptive;
+        toggleAdaptive ? menu.style.display = 'block' : menu.style.display = 'none';
+    });
+    burgerMenuButton.style.position = 'absolute';
+    // burgerMenuButton.innerText = 'menu';
+    wrapper.insertBefore(burgerMenuButton, wrapper.firstChild);
+}
+
 export const createBlockForCode = (code) => {
     const content = document.getElementsByClassName("content")[0];
     const codeBlock = document.createElement('div');
