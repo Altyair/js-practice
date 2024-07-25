@@ -1,39 +1,8 @@
 import { createBlockForCode } from '../helper'
 
-export const binarySearch = (arr, el) => {
-    let left = 0;
-    let right = arr.length - 1;
-
-    while (left <= right) {
-        const mid = Math.floor((left + right) / 2);
-
-        if (arr[mid] === el) {
-            return mid;
-        }
-        if (arr[left] <= arr[mid]) {
-            if (arr[left] <= el && el <= arr[mid]) {
-                right = mid -1;
-            } else {
-                left = mid + 1;
-            }
-        } else {
-            if (arr[mid] <= el && el <= arr[right]) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-    }
-    return -1;
-}
-
 // ---------------------------------- binary search in a sorted shifted array
 export const main = (arr, el) => {
-    let input1 = [4,7,1,2,3,5];
-
-    console.log(binarySearch(input1, 2));
-
-    createBlockForCode(`
+    const code = `
         let input1 = [4,5,6,7,8,1,2,3];
         
         const binarySearch = (arr, el) => {
@@ -65,5 +34,8 @@ export const main = (arr, el) => {
         
         // find index for 2
         console.log(binarySearch(input1, 2));   // 6
-    `);
+    `;
+
+    eval(code);
+    createBlockForCode(code);
 }
