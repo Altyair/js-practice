@@ -302,4 +302,37 @@ export const main = () => {
     curriedTaskChain(1,2,3);
     curriedTaskChain(1)(2)()(7);
     curriedTaskChain(1)()(2,3);
+
+    //--------------------------------- рекурсия  --------------------------------------
+    // 0! = 1
+    // n! = n * (n-1)!
+    // 2! = 1*2
+    // 3! = 1*2*3
+    // factorial(3): 3 * factorial(2) = 2 * 1
+    // factorial(2): 2 * factorial(1) = 1
+    // factorial(1): 1 * factorial(0) = 1
+    // factorial(0): 1
+    const factorial = (n) => {
+        return (n === 0) ? 1 : n * factorial(n-1);
+    }
+    console.log(factorial(3));
+
+    // -------------------- fibonacci O(2^n)
+    // fibonacci(0) = 0
+    // fibonacci(1) = 1
+    // fibonacci(n) = fibonacci(n-1) + factorial(n-2), n > 1
+    const fibonacci = (n) => {
+        if (n <= 1) return n;
+        return fibonacci(n-1) + factorial(n-2);
+    }
+    console.log(fibonacci(3));
+
+    // -------------------- cycle for
+    const cycle = (i, arr)=> {
+        console.log(`el${i}`, arr[i]);
+        if (i === arr.length - 1) return;
+        return cycle(i + 1, arr);
+    }
+    const arr = [5,0,-1,10,-20,55,7];
+    cycle(0, [5,0,-1,10,-20,55,7]);
 }

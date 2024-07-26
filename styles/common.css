@@ -10,6 +10,7 @@ body { margin: 0; padding: 0 }
 }
 .burger-menu-button {
     cursor: pointer;
+    top: 10px;
     left: 25px;
 }
 .content {
@@ -18,7 +19,7 @@ body { margin: 0; padding: 0 }
 .menu {
     display: flex;
     flex-direction: column;
-    min-width: 400px;
+    min-width: 350px;
     max-height: 615px;
     overflow-y: auto;
     padding-right: 30px;
@@ -28,8 +29,11 @@ body { margin: 0; padding: 0 }
 .adaptive .menu {
     position: absolute;
     display: none;
-    top: 30px;
-    background: aliceblue;
+    top: 50px;
+    background: #fff;
+    border-radius: 0 10px 10px 0;
+    padding: 20px 20px 20px 40px;
+    border: 1px solid #cecece;
 }
 pre:not(.highlight), div.highlight, div:not(.highlight)>pre.highlight, li pre.highlight, blockquote pre.highlight {
     background-color: black;
