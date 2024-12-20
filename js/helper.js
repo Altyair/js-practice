@@ -89,3 +89,7 @@ export const drawCanvas = (params, drawCallback) => {
 
     draw();
 }
+
+export const cl = (value) => {
+    console.log(value);
+}
