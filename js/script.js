@@ -3,6 +3,7 @@ let currentModule;
 const loadModule = (name) => {
     import(`./examples/${name}`)
         .then((module) => {
+            console.log(module);
             currentModule = module;
             module.main();
             window.location.hash = name;
@@ -40,7 +41,6 @@ window.onload = () => {
         const content = document.querySelector(".content");
         document.querySelector('.menu').addEventListener('click', event => {
             if (currentModule && currentModule.detach) {
-                console.log(888);
                 currentModule.detach();
             }
 

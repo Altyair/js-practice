@@ -1,26 +1,30 @@
 import { createBlockForCode } from '../helper'
 import {
-    BehaviorSubject,
     combineLatest,
-    distinctUntilChanged, filter, finalize,
+    filter, finalize,
     first,
     fromEvent,
     interval, map,
     of, pluck,
     scan,
-    startWith, Subscription,
+    Subscription,
     switchMap, takeWhile, tap, withLatestFrom,
 } from "rxjs";
 
-// ---------------------------------- currying ------------------------
+// ---------------------------------- Typing game (rxjs example) ------------------------
+const t = 1;
+const str = '<p id="time">Timer: <span>${t}</span> sec</p>' +
+                    '<p id="task">2</p>' +
+                    '<p id="result"></p>' +
+                    '<textarea id="text-field" rows="20" cols="100"></textarea>';
+
 let subscriptions = [];
 
-export const detach = () => (subscriptions.forEach(sub => sub.unsubscribe()));
+const detach = () => (subscriptions.forEach(sub => sub.unsubscribe()));
+const main = () => {
 
-export const main = () => {
     subscriptions = [];
 
-    const INTERVAL_VALUE = 100;
     const state$ = of({
         text: '',
         time: 0,
@@ -30,7 +34,12 @@ export const main = () => {
             "Lorem ipsum dolor sit amet",
             "life is very good"
         ],
-        level: 0
+        level: 0,
+        intervalValue: 100,
+        formatTime: {
+            second: 1000,
+            minute: 60_000,
+        }
     });
     const gameStream$ = state$.pipe(
         tap(state => {
@@ -40,19 +49,20 @@ export const main = () => {
                 <p id="result"></p>
                 <textarea id="text-field" rows="20" cols="100"></textarea>
             `;
+            document.querySelector('textarea').focus();
         }),
-        map(_ => fromEvent(document.querySelector('textarea'), 'keyup')),
-        switchMap((emitCharacter$) => combineLatest(
+        map(state => [state, fromEvent(document.querySelector('textarea'), 'keyup')] ),
+        switchMap(([state, emitCharacter$]) => combineLatest(
             state$,
             emitCharacter$.pipe(
                 first(),
-                switchMap(() => interval(INTERVAL_VALUE))
+                switchMap(() => interval(state.intervalValue))
             ),
-            emitCharacter$.pipe(map((e) => e.target.value)),
+            emitCharacter$.pipe(pluck(('target', 'value'))),
         ).pipe(
             scan((_, game) => (
                 (([state, time, text]) => (
-                    state.time = time * INTERVAL_VALUE / 1000,
+                    state.time = time * state.intervalValue / state.formatTime.second,
                     state.text = document.querySelector('textarea').value
                 ))(game),
                 game
@@ -63,13 +73,13 @@ export const main = () => {
         ))
     );
 
-    let gameStreamSub = gameStream$.subscribe();
+    const gameStreamSub = gameStream$.subscribe();
     const gameStreamSubscription = new Subscription();
     gameStreamSubscription.add(gameStreamSub);
 
     const restartGameSubscription = new Subscription();
     restartGameSubscription.add(fromEvent(document.body, 'keyup').pipe(
-        map(event => event.keyCode),
+        pluck('keyCode'),
         filter(keyCode => keyCode === 13 && gameStreamSub.isStopped),
         withLatestFrom(state$)).subscribe(([_, state]) => {
             (
@@ -81,4 +91,7 @@ export const main = () => {
     ));
 
     subscriptions.push(gameStreamSubscription, restartGameSubscription);
+
+    console.log(str);
 };
+export { main, detach };
