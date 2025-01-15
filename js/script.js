@@ -3,7 +3,6 @@ let currentModule;
 const loadModule = (name) => {
     import(`./examples/${name}`)
         .then((module) => {
-            console.log(module);
             currentModule = module;
             module.main();
             window.location.hash = name;

@@ -12,12 +12,6 @@ import {
 } from "rxjs";
 
 // ---------------------------------- Typing game (rxjs example) ------------------------
-const t = 1;
-const str = '<p id="time">Timer: <span>${t}</span> sec</p>' +
-                    '<p id="task">2</p>' +
-                    '<p id="result"></p>' +
-                    '<textarea id="text-field" rows="20" cols="100"></textarea>';
-
 let subscriptions = [];
 
 const detach = () => (subscriptions.forEach(sub => sub.unsubscribe()));
@@ -91,7 +85,5 @@ const main = () => {
     ));
 
     subscriptions.push(gameStreamSubscription, restartGameSubscription);
-
-    console.log(str);
 };
 export { main, detach };

@@ -2597,5 +2597,76 @@ export const main = () => {
         }
         return true;
     };
+
+    // https://leetcode.com/problems/range-addition-ii/description/
+    var maxCount = function(m, n, ops) {
+        let minA = m;
+        let minB = n;
+        for (let op of ops) {
+            minA = Math.min(minA, op[0]);
+            minB = Math.min(minB, op[1]);
+        }
+        return minA * minB;
+    };
+
+    class SnakeGame {
+        constructor(width, height, food) {
+            this.width = width;
+            this.height = height;
+            this.food = food;
+            this.snake = [[0, 0]];
+            this.score = 0;
+            this.foodIndex = 0;
+            this.snakeSet = new Set(["0,0"]);
+        }
+
+        move(direction) {
+            let head = this.snake[0].slice();
+            switch (direction) {
+                case "U":
+                    head[0]--;
+                    break;
+                case "D":
+                    head[0]++;
+                    break;
+                case "L":
+                    head[1]--;
+                    break;
+                case "R":
+                    head[1]++;
+                    break;
+            }
+
+            if (head[0] < 0 || head[0] >= this.height || head[1] < 0 || head[1] >= this.width) {
+                return -1;
+            }
+
+            let newHeadStr = head.toString();
+            if (this.snakeSet.has(newHeadStr) && newHeadStr !== this.snake[this.snake.length - 1].toString()) {
+                return -1;
+            }
+
+            if (this.foodIndex < this.food.length && head[0] === this.food[this.foodIndex][0] && head[1] === this.food[this.foodIndex][1]) {
+                this.foodIndex++;
+            } else {
+                let tail = this.snake.pop();
+                this.snakeSet.delete(tail.toString());
+            }
+
+            this.snake.unshift(head);
+            this.snakeSet.add(newHeadStr);
+
+            return this.snake.length - 1;
+        }
+    }
+
+    const snackGame = new SnakeGame(3, 2, [[1, 2], [0, 1]]);
+
+    //
+    const isPrime = num => {
+        const boundary = Math.floor(Math.sqrt(num));
+        for (let i = 2; i <= boundary; i++) if (num % i === 0) return false;
+        return num >= 2;
+    }
 }
 
